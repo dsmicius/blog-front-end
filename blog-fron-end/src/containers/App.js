@@ -1,13 +1,18 @@
-import './App.css';
 import FooterContainer from "./FooterContainer/FooterContainer";
 import HeaderContainer from "./Header/HeaderContainer";
+import './App.css';
+import {BrowserRouter} from 'react-router-dom';
+import Pages from "./Pages";
 
 function App() {
     return (
-        <div className="mainApp">
-            <HeaderContainer/>
-            <FooterContainer />
-        </div>
+        <BrowserRouter>
+            <div className="mainApp">
+                <HeaderContainer/>
+                <Pages/>
+                <FooterContainer/>
+            </div>
+        </BrowserRouter>
     );
 }
 
