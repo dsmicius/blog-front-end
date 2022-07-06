@@ -4,7 +4,6 @@ import BlogsPage from "./BlogsPage/BlogsPage";
 import NewBlogPage from "./NewBlogPage/NewBlogPage";
 import FavoritesPage from "./FavoritesPage/FavoritesPage";
 import LoginPage from "./LoginPage/LoginPage";
-import NewBlogPage2 from "./NewBlogPage/NewBlogPage2";
 
 export default () => (
     <Routes>

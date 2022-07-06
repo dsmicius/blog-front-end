@@ -1,23 +1,32 @@
 import {Button, Container, Form, Spinner} from "react-bootstrap";
-import FormLabelControl from "../../../components/FormLabelControl/FormLabelControl";
-import {useState} from "react";
+import FormLabelControl from "../../../components/Form/FormLabelControl/FormLabelControl";
+import {useContext, useState} from "react";
 import * as Yup from 'yup';
 import {Field, Formik} from "formik";
-import FormikFieldInputGroup from "../../../components/FormikFieldInputGroup/FormikFieldInputGroup";
+import FormikFieldInputGroup from "../../../components/Formik/FormikFieldInputGroup/FormikFieldInputGroup";
+import {createBlogEndpoint} from "../../../api/apiEndpoints";
+import {AuthUserContext} from "../../../contexts/AuthUserContext";
 
 
 const NewBlogPage = () => {
+
+    const [userDto, setUserDto] = useState({email: ''});
+
     const [blog, setBlog] = useState({
         subject: '',
-        description: ''
+        description: '',
+        userDto: {email: ''}
     });
 
     const [visible, setVisible] = useState(false);
+
+    const {authUser} = useContext(AuthUserContext)
 
     const handleChange = (e) => {
         setBlog({
             ...blog,
             [e.target.name]: e.target.value,
+            userDto: {email: authUser.username}
         });
     };
 
@@ -25,8 +34,12 @@ const NewBlogPage = () => {
         e.preventDefault();
 
         console.log(blog);
-
-        setVisible(true);
+        createBlogEndpoint(blog, {
+            headers: {
+                'Authorization': `Bearer ${authUser.jwtToken}`
+            }
+        })
+            .then(() => setVisible(true));
     };
 
     const showCreatedBlogInfo = () => {

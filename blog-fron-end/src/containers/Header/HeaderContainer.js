@@ -1,7 +1,12 @@
 import {Button, Container, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
+import {useContext} from "react";
+import {AuthUserContext} from "../../contexts/AuthUserContext";
 
 const HeaderContainer = () => {
+
+    const {authUser} = useContext(AuthUserContext)
+
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
@@ -16,9 +21,12 @@ const HeaderContainer = () => {
                         <Nav.Link to="/blogs" as={NavLink}>Blogs</Nav.Link>
                         <Nav.Link to="/blogs/create" as={NavLink}>Create Blog</Nav.Link>
                     </Nav>
-                    <Nav style={{paddingRight: "300px"}}>
-                        Sveiki, Dominykas Šmičius
-                    </Nav>
+                    {authUser.username
+                        ? <Nav style={{paddingRight: "300px"}}>
+                            Sveiki, {authUser.fullname}
+                        </Nav>
+                        : ""
+                    }
                     <Nav>
                         <p></p>
                     </Nav>
@@ -41,7 +49,14 @@ const HeaderContainer = () => {
                         <Button variant="outline-success">Search</Button>
                     </Form>
                     <Nav>
-                        <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
+                        {!authUser.username
+                            ? <Nav.Link to="/login" as={NavLink}>
+                                Login
+                            </Nav.Link>
+                            : <Nav.Link href="/login">
+                                Logout
+                            </Nav.Link>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>
