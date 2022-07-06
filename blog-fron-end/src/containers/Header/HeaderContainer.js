@@ -13,8 +13,8 @@ const HeaderContainer = () => {
                         style={{maxHeight: '100px'}}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Blogs</Nav.Link>
-                        <Nav.Link href="#action2">Create Blog</Nav.Link>
+                        <Nav.Link to="/blogs" as={NavLink}>Blogs</Nav.Link>
+                        <Nav.Link to="/blogs/create" as={NavLink}>Create Blog</Nav.Link>
                     </Nav>
                     <Nav style={{paddingRight: "300px"}}>
                         Sveiki, Dominykas Šmičius
@@ -23,7 +23,7 @@ const HeaderContainer = () => {
                         <p></p>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#action2">Favorites</Nav.Link>
+                        <Nav.Link to="/favorites" as={NavLink}>Favorites</Nav.Link>
                         <NavDropdown title="Languages" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">LT</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">EN</NavDropdown.Item>
@@ -41,7 +41,7 @@ const HeaderContainer = () => {
                         <Button variant="outline-success">Search</Button>
                     </Form>
                     <Nav>
-                        <Nav.Link href="#action1">Login</Nav.Link>
+                        <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
