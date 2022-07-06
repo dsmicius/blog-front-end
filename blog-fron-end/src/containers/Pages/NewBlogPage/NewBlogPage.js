@@ -1,6 +1,9 @@
-import {Button, Container, Form} from "react-bootstrap";
+import {Button, Container, Form, Spinner} from "react-bootstrap";
 import FormLabelControl from "../../../components/FormLabelControl/FormLabelControl";
 import {useState} from "react";
+import * as Yup from 'yup';
+import {Field, Formik} from "formik";
+import FormikFieldInputGroup from "../../../components/FormikFieldInputGroup/FormikFieldInputGroup";
 
 
 const NewBlogPage = () => {
@@ -40,9 +43,25 @@ const NewBlogPage = () => {
             </>;
     }
 
+    const validationSchema = Yup.object().shape({
+        subject: Yup.string()
+            .min(3, 'Ilgis turi buti ne mazesnis nei 3')
+            .required(),
+        description: Yup.string()
+            .min(3, 'Teksto ilgis turi buti ne mazenis nei 3')
+            .required(),
+    });
+
     return (
         <Container>
-            <Form onSubmit={onSubmit}>
+            <Form
+                initialValues={{
+                    subject: '',
+                    description: '',
+                }}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+            >
                 <FormLabelControl
                     className="mb-3"
                     onChange={handleChange}
@@ -65,7 +84,7 @@ const NewBlogPage = () => {
             </Form>
             {showCreatedBlogInfo()}
         </Container>
-    )
-}
+    );
+};
 
 export default NewBlogPage;
