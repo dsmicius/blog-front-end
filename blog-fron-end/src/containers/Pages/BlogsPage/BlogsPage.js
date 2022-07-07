@@ -23,35 +23,16 @@ const BlogsPage = () => {
     const onDeleteClick = (blogId) => {
         console.log(`/${blogId}`);
         console.log('user', authUser.username);
-        axios.post(`http://localhost:8888/api/blogs/${blogId}`,null,{
+
+        deleteBlogEndpoint(blogId, {
             headers: {
                 'Authorization': `Bearer ${authUser.jwtToken}`,
-                'Access-Control-Allow-Origin': '*',
-            },
-            proxy: {
-                host: "http://localhost:8888",
-                port: 8888,
             }
-        }).then((response) =>
-        {
-            response.headers.add('Access-Control-Allow-Origin', '*')
         })
-
-
-
-        // deleteBlogEndpoint(`/${blogId}`, {
-        //     headers: {
-        //         'Authorization': `Bearer ${authUser.jwtToken}`,
-        //     },
-        //     proxy: {
-        //         host: "http://localhost:8888",
-        //         port: 8888,
-        //     }
-        // })
-        //     .then(() =>
-        //         console.log('blog deleted', blogId),
-        //     )
-        //     .catch((error) => console.log("ERROR:",error));
+            .then(() =>
+                console.log('blog deleted', blogId),
+            )
+            .catch((error) => console.log("ERROR:",error));
     };
 
 

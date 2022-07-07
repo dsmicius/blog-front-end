@@ -22,7 +22,7 @@ const HeaderContainer = () => {
                         <Nav.Link to="/blogs/create" as={NavLink}>Create Blog</Nav.Link>
                     </Nav>
                     {authUser.username
-                        ? <Nav style={{paddingRight: "300px"}}>
+                        ? <Nav style={{paddingRight: "10px"}}>
                             Sveiki, {authUser.fullname}
                         </Nav>
                         : ""
