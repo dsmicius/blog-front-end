@@ -1,5 +1,18 @@
 {
   "common": {
-    "hello": "hello world - english"
+    "hello": "hello, {{name}}",
+    "buttons": {
+      "submit": "Submit"
+    }
+  },
+  "blogForm": {
+    "labels": {
+      "subject": "Subject",
+      "description": "Description"
+    },
+    "placeHolders" : {
+      "subject": "Write subject",
+      "description": "Write description"
+    }
   }
 }

@@ -1,5 +1,18 @@
 {
   "common": {
-    "labas": "Labas pasauli - lietuviskai"
+    "hello": "Labas, {{name}}",
+    "buttons": {
+      "submit": "Išsaugoti"
+    }
+  },
+  "blogForm": {
+    "labels": {
+      "subject": "Antraštė",
+      "description": "Pilnas aprašymas"
+    },
+    "placeHolders": {
+      "subject": "Įrašykite antraštę",
+      "description": "Įrašykite pilną aprašymą"
+    }
   }
 }

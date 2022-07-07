@@ -8,7 +8,7 @@ const HomePage = () => {
     return (
         <>
             <h1>Sveiki, tai yra mano Blogas</h1>
-            <h2>{t('hello')}</h2>
+            <h2>{t('hello', {name: "Dominykai"})}</h2>
         </>
     );
 };

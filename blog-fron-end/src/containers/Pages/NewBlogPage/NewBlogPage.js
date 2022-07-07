@@ -6,6 +6,7 @@ import {Field, Formik} from "formik";
 import FormikFieldInputGroup from "../../../components/Formik/FormikFieldInputGroup/FormikFieldInputGroup";
 import {createBlogEndpoint} from "../../../api/apiEndpoints";
 import {AuthUserContext} from "../../../contexts/AuthUserContext";
+import { useTranslation } from 'react-i18next';
 
 const NewBlogPage = () => {
     const [userDto, setUserDto] = useState({email: ''});
@@ -19,6 +20,8 @@ const NewBlogPage = () => {
     const [visible, setVisible] = useState(false);
 
     const {authUser} = useContext(AuthUserContext)
+
+    const { t } = useTranslation("blogForm");
 
     const handleChange = (e) => {
         setBlog({
@@ -76,21 +79,21 @@ const NewBlogPage = () => {
                 <FormLabelControl
                     className="mb-3"
                     onChange={handleChange}
-                    placeholderText="Write subject"
+                    placeholderText={t("placeHolders.subject")}
                     name="subject"
-                    labelText="Blog subject"
+                    labelText={t("labels.subject")}
                 />
 
                 <FormLabelControl
                     className="mb-3"
                     onChange={handleChange}
-                    placeholderText="Write description"
+                    placeholderText={t("placeHolders.description")}
                     name="description"
-                    labelText="Blog description"
+                    labelText={t("labels.description")}
                     isTextArea
                 />
                 <Button variant='primary' type='submit'>
-                    Submit
+                    {t("common:buttons.submit")}
                 </Button>
             </Form>
             {showCreatedBlogInfo()}
