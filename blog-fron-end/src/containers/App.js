@@ -6,6 +6,8 @@ import Pages from "./Pages";
 import {AuthUserContext, initialAuthUserObj} from '../contexts/AuthUserContext';
 import {saveToSessionStorage, StorageKey} from "../utils/saveToSessionStorage";
 import {useState} from "react";
+import "../i18n"
+
 
 function App() {
 
