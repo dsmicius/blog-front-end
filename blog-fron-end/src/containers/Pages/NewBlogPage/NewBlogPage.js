@@ -7,9 +7,7 @@ import FormikFieldInputGroup from "../../../components/Formik/FormikFieldInputGr
 import {createBlogEndpoint} from "../../../api/apiEndpoints";
 import {AuthUserContext} from "../../../contexts/AuthUserContext";
 
-
 const NewBlogPage = () => {
-
     const [userDto, setUserDto] = useState({email: ''});
 
     const [blog, setBlog] = useState({
