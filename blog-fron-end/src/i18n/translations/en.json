@@ -14,5 +14,9 @@
       "subject": "Write subject",
       "description": "Write description"
     }
+  },
+  "validations": {
+    "min": "Must be longer than {{min}}",
+    "required": "Required"
   }
 }
