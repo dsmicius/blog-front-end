@@ -8,6 +8,15 @@ import {createBlogEndpoint} from "../../../api/apiEndpoints";
 import {AuthUserContext} from "../../../contexts/AuthUserContext";
 import { useTranslation } from 'react-i18next';
 
+const validationSchema = Yup.object().shape({
+    subject: Yup.string()
+        .min(3, 'Ilgis turi buti ne mazesnis nei 3')
+        .required(),
+    description: Yup.string()
+        .min(3, 'Teksto ilgis turi buti ne mazenis nei 3')
+        .required(),
+});
+
 const NewBlogPage = () => {
     const [userDto, setUserDto] = useState({email: ''});
 
@@ -57,14 +66,7 @@ const NewBlogPage = () => {
             </>;
     }
 
-    const validationSchema = Yup.object().shape({
-        subject: Yup.string()
-            .min(3, 'Ilgis turi buti ne mazesnis nei 3')
-            .required(),
-        description: Yup.string()
-            .min(3, 'Teksto ilgis turi buti ne mazenis nei 3')
-            .required(),
-    });
+
 
     return (
         <Container>
