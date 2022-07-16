@@ -4,10 +4,14 @@ import { Button, Card, Col, Container, ListGroupItem, Row } from 'react-bootstra
 
 import { AuthUserContext } from '../../../contexts/AuthUserContext';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorite } from '../../../redux/Favorite/favoriteActions';
 
 const BlogsPage = () => {
 
     const { authUser } = useContext(AuthUserContext);
+
+    const dispatch = useDispatch();
 
     const [blogItems, setBlogItems] = useState([]);
 
@@ -21,20 +25,17 @@ const BlogsPage = () => {
     }, []);
 
     const onDeleteClick = (blogId) => {
-        console.log(`/${blogId}`);
-        console.log('user', authUser.username);
-
         deleteBlogEndpoint(blogId, {
             headers: {
                 'Authorization': `Bearer ${authUser.jwtToken}`,
-            }
+            },
         })
-            .then(() =>
-                console.log('blog deleted', blogId),
-            )
-            .catch((error) => console.log("ERROR:",error));
+            .catch((error) => console.log('ERROR:', error));
     };
 
+    const handleAddBlogToFavorite = (blog) => {
+        dispatch(addToFavorite(blog))
+    }
 
     return (
         <Container fluid>
@@ -56,6 +57,9 @@ const BlogsPage = () => {
                                     </button>
                                     <Card.Link className='btn btn-success'
                                     >EDIT</Card.Link>
+                                    <Button onClick={() => handleAddBlogToFavorite(blog)}>
+                                        Favorite
+                                    </Button>
                                 </Card.Body>
                             </Card>
                         </Col>
