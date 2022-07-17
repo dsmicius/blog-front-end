@@ -1,4 +1,4 @@
-import { ADD_TO_FAVORITE } from './favoriteModel';
+import { ADD_TO_FAVORITE, REMOVE_FROM_FAVORITE } from './favoriteModel';
 
 export const addToFavorite = (blog) => (
     {
@@ -6,3 +6,10 @@ export const addToFavorite = (blog) => (
         blog,
     }
 );
+
+export const removeFromFavorite = (blogId) => (
+    {
+        type: REMOVE_FROM_FAVORITE,
+        blogId,
+    }
+)

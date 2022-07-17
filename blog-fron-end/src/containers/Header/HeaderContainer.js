@@ -1,10 +1,14 @@
 import {Button, Container, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 
 const HeaderContainer = () => {
 
     const authUser = useSelector(state => state.user)
+    const blogItems = useSelector(state => state.favorite.items);
 
     return (
         <Navbar bg="light" expand="lg">
@@ -30,7 +34,14 @@ const HeaderContainer = () => {
                         <p></p>
                     </Nav>
                     <Nav>
-                        <Nav.Link to="/favorites" as={NavLink}>Favorites</Nav.Link>
+                        <Nav.Link to="/favorites" as={NavLink}>
+                            <Button type="button" className="btn btn-secondary position-relative">
+                                <FontAwesomeIcon className='position-relative' icon={solid('heart')}/>
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {blogItems.length}
+                                </span>
+                            </Button>
+                        </Nav.Link>
                         <NavDropdown title="Languages" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">LT</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">EN</NavDropdown.Item>

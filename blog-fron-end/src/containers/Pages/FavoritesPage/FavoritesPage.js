@@ -1,9 +1,16 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { addToFavorite, removeFromFavorite } from '../../../redux/Favorite/favoriteActions';
 
 const FavoritesPage = () => {
 
     const blogItems = useSelector(state => state.favorite.items);
+
+    const dispatch = useDispatch();
+
+    const handleRemoveBlogToFavorite = (blogId) => {
+        dispatch(removeFromFavorite(blogId))
+    }
 
     return (
         <Container fluid>
@@ -16,14 +23,21 @@ const FavoritesPage = () => {
                                     <Card.Title>{blog.subject}</Card.Title>
                                     <Card.Subtitle className='mb-2 text-muted'>{blog.author}</Card.Subtitle>
                                     <Card.Text>{blog.description}</Card.Text>
-                                    <Card.Link className='btn btn-success'
-                                    >remove</Card.Link>
+                                    <Button type="button"
+                                            className="btn btn-primary position-relative tableDeleteButton"
+                                            onClick={() => handleRemoveBlogToFavorite(blog.blogId)}>
+                                        Remove
+                                    </Button>
                                 </Card.Body>
                             </Card>
                         </Col>
                     ))
                 }
             </Row>
+            <br/>
+            <hr/>
+            <p className='text-center p-4'>Total items: {blogItems.length}</p>
+
         </Container>
     );
 };

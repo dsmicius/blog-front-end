@@ -1,4 +1,4 @@
-import { ADD_TO_FAVORITE } from './favoriteModel';
+import { ADD_TO_FAVORITE, REMOVE_FROM_FAVORITE } from './favoriteModel';
 
 const defaultState = {
     items: [],
@@ -23,6 +23,13 @@ const favoriteReducer = (state = defaultState, action) => {
                 };
             }
         }
+
+        case REMOVE_FROM_FAVORITE:
+            return {
+                ...state,
+                items: state.items.filter(item => item.blogId !== action.blogId),
+            }
+
         default:
             return state;
     }
