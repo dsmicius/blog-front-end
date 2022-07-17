@@ -3,10 +3,12 @@ import { deleteBlogEndpoint, getBlogsEndpoint } from '../../../api/apiEndpoints'
 import { Button, Card, Col, Container, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../../../redux/Favorite/favoriteActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const BlogsPage = () => {
 
-    const authUser = useSelector(state => state.user)
+    const authUser = useSelector(state => state.user);
 
     const dispatch = useDispatch();
 
@@ -31,8 +33,8 @@ const BlogsPage = () => {
     };
 
     const handleAddBlogToFavorite = (blog) => {
-        dispatch(addToFavorite(blog))
-    }
+        dispatch(addToFavorite(blog));
+    };
 
     return (
         <Container fluid>
@@ -43,20 +45,49 @@ const BlogsPage = () => {
                             <Card style={{ width: '28rem', padding: '5px' }}>
                                 <Card.Body>
                                     <Card.Title>{blog.subject}</Card.Title>
-                                    <Card.Subtitle className='mb-2 text-muted'>{blog.author}</Card.Subtitle>
-                                    <Card.Text>{blog.description}</Card.Text>
-                                    <button
-                                        type='button'
-                                        className='btn btn-danger'
-                                        onClick={() => onDeleteClick(blog.blogId)}
-                                    >
-                                        DELETE
-                                    </button>
-                                    <Card.Link className='btn btn-success'
-                                    >EDIT</Card.Link>
-                                    <Button onClick={() => handleAddBlogToFavorite(blog)}>
-                                        Favorite
-                                    </Button>
+                                    <hr />
+                                    <Card.Text>{blog.description.length < 100 ? blog.description : blog.description.substring(0, 500) + ' ...'}</Card.Text>
+                                    <hr />
+                                    <Card.Subtitle className='mb-2 text-muted' style={{ fontSize: 12 }}>
+
+                                            <p>Author: {blog.author}</p>
+                                            <p>Created: {blog.createDate}</p>
+                                            <p>Comments: {blog.comments.length}</p>
+
+                                    </Card.Subtitle>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '90% 10%' }}>
+                                        <div>
+                                            <button
+                                                type='button'
+                                                className='btn btn-danger'
+                                                onClick={() => onDeleteClick(blog.blogId)}
+                                                style={{ marginRight: 7 }}>
+                                                DELETE
+                                            </button>
+                                            <Card.Link className='btn btn-primary'
+                                                       style={{ marginRight: 7 }}>
+                                                EDIT
+                                            </Card.Link>
+                                        </div>
+                                        <div style={{ alignSelf: 'self-end' }}>
+                                            <Button className='btn btn-success'
+                                                    onClick={() => handleAddBlogToFavorite(blog)}>
+                                                <FontAwesomeIcon className='position-relative'
+                                                                 icon={solid('thumbs-up')} />
+                                            </Button>
+                                        </div>
+                                    </div>
+                                    {/*<Card.Subtitle className='mb-2 text-muted' style={{ fontSize: 12 }}>*/}
+                                    {/*    <p>Author: {blog.author}</p>*/}
+                                    {/*    <p>Created: {blog.createDate}</p>*/}
+                                    {/*    <p>Comments: {blog.comments.length}</p>*/}
+                                    {/*</Card.Subtitle>*/}
+                                    {/*<div style={{ justifyContent: 'end', display:'grid' }}>*/}
+                                    {/*    <Button className='btn btn-success'*/}
+                                    {/*            onClick={() => handleAddBlogToFavorite(blog)}>*/}
+                                    {/*        <FontAwesomeIcon className='position-relative' icon={solid('thumbs-up')} />*/}
+                                    {/*    </Button>*/}
+                                    {/*</div>*/}
                                 </Card.Body>
                             </Card>
                         </Col>
