@@ -29,7 +29,6 @@ const NewBlogPage = () => {
 
     const [visible, setVisible] = useState(false);
 
-    // const {authUser} = useContext(AuthUserContext)
     const authUser = useSelector(state => state.user)
 
     const { t } = useTranslation("blogForm");

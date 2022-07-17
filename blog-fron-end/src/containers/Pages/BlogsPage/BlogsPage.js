@@ -1,15 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { deleteBlogEndpoint, getBlogsEndpoint } from '../../../api/apiEndpoints';
 import { Button, Card, Col, Container, ListGroupItem, Row } from 'react-bootstrap';
-
-import { AuthUserContext } from '../../../contexts/AuthUserContext';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../../../redux/Favorite/favoriteActions';
 
 const BlogsPage = () => {
 
-    // const { authUser } = useContext(AuthUserContext);
     const authUser = useSelector(state => state.user)
 
     const dispatch = useDispatch();

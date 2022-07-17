@@ -1,12 +1,9 @@
 import {Button, Container, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import {useContext} from "react";
-import {AuthUserContext} from "../../contexts/AuthUserContext";
 import { useSelector } from 'react-redux';
 
 const HeaderContainer = () => {
 
-    // const {authUser} = useContext(AuthUserContext)
     const authUser = useSelector(state => state.user)
 
     return (

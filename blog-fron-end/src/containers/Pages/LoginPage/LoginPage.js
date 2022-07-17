@@ -6,8 +6,6 @@ import {
 import FormikFieldInputGroup from '../../../components/Formik/FormikFieldInputGroup/FormikFieldInputGroup';
 import * as Yup from 'yup';
 import { loginEndpoint } from '../../../api/apiEndpoints';
-import { useContext } from 'react';
-import { AuthUserContext } from '../../../contexts/AuthUserContext';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../../redux/User/userActions';
@@ -25,7 +23,6 @@ const validationSchema = Yup.object().shape({
 
 const LoginPage = () => {
 
-    // const { putAuthUser } = useContext(AuthUserContext)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -34,7 +31,6 @@ const LoginPage = () => {
             username: login.email,
             password: login.password,
         }).then(({ data }) => {
-            // putAuthUser(data)
             dispatch(
                 userLogin(data)
             )
