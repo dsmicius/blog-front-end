@@ -29,7 +29,14 @@ const BlogsPage = () => {
                 'Authorization': `Bearer ${authUser.jwtToken}`,
             },
         })
-            .catch((error) => console.log('ERROR:', error));
+            .catch((error) => console.log('ERROR:', error))
+            .finally(
+                getBlogsEndpoint()
+                    .then(({ data }) => {
+                        setBlogItems(data.blogs);
+                    })
+                    .catch((error) => console.log('error', error)),
+            );
     };
 
     const handleAddBlogToFavorite = (blog) => {
@@ -50,9 +57,9 @@ const BlogsPage = () => {
                                     <hr />
                                     <Card.Subtitle className='mb-2 text-muted' style={{ fontSize: 12 }}>
 
-                                            <p>Author: {blog.author}</p>
-                                            <p>Created: {blog.createDate}</p>
-                                            <p>Comments: {blog.comments.length}</p>
+                                        <p>Author: {blog.author}</p>
+                                        <p>Created: {blog.createDate}</p>
+                                        <p>Comments: {blog.comments.length}</p>
 
                                     </Card.Subtitle>
                                     <div style={{ display: 'grid', gridTemplateColumns: '90% 10%' }}>
@@ -77,17 +84,6 @@ const BlogsPage = () => {
                                             </Button>
                                         </div>
                                     </div>
-                                    {/*<Card.Subtitle className='mb-2 text-muted' style={{ fontSize: 12 }}>*/}
-                                    {/*    <p>Author: {blog.author}</p>*/}
-                                    {/*    <p>Created: {blog.createDate}</p>*/}
-                                    {/*    <p>Comments: {blog.comments.length}</p>*/}
-                                    {/*</Card.Subtitle>*/}
-                                    {/*<div style={{ justifyContent: 'end', display:'grid' }}>*/}
-                                    {/*    <Button className='btn btn-success'*/}
-                                    {/*            onClick={() => handleAddBlogToFavorite(blog)}>*/}
-                                    {/*        <FontAwesomeIcon className='position-relative' icon={solid('thumbs-up')} />*/}
-                                    {/*    </Button>*/}
-                                    {/*</div>*/}
                                 </Card.Body>
                             </Card>
                         </Col>
