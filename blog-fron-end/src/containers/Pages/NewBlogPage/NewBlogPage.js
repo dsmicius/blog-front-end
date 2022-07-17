@@ -7,6 +7,7 @@ import FormikFieldInputGroup from "../../../components/Formik/FormikFieldInputGr
 import {createBlogEndpoint} from "../../../api/apiEndpoints";
 import {AuthUserContext} from "../../../contexts/AuthUserContext";
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const validationSchema = Yup.object().shape({
     subject: Yup.string()
@@ -28,7 +29,8 @@ const NewBlogPage = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const {authUser} = useContext(AuthUserContext)
+    // const {authUser} = useContext(AuthUserContext)
+    const authUser = useSelector(state => state.user)
 
     const { t } = useTranslation("blogForm");
 

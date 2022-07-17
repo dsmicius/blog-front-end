@@ -9,6 +9,8 @@ import { loginEndpoint } from '../../../api/apiEndpoints';
 import { useContext } from 'react';
 import { AuthUserContext } from '../../../contexts/AuthUserContext';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../../../redux/User/userActions';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -23,15 +25,19 @@ const validationSchema = Yup.object().shape({
 
 const LoginPage = () => {
 
-    const { putAuthUser } = useContext(AuthUserContext)
+    // const { putAuthUser } = useContext(AuthUserContext)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const postLogin = (login, helper) => {
         loginEndpoint({
             username: login.email,
             password: login.password,
         }).then(({ data }) => {
-            putAuthUser(data)
+            // putAuthUser(data)
+            dispatch(
+                userLogin(data)
+            )
             navigate("/")
         })
             .catch((error) => console.log(error))

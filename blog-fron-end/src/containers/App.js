@@ -13,24 +13,24 @@ import store from '../redux/store';
 
 function App() {
 
-    const [authUser, setAuthUser] = useState(initialAuthUserObj);
-
-    const authContextValue = {
-        authUser,
-        putAuthUser: (data) => {  // data = { username: '', fullname: '', jwtToken: ''}
-            setAuthUser(data);
-            saveToSessionStorage(StorageKey.jwt, data.jwtToken);
-        },
-    };
+    // const [authUser, setAuthUser] = useState(initialAuthUserObj);
+    //
+    // const authContextValue = {
+    //     authUser,
+    //     putAuthUser: (data) => {  // data = { username: '', fullname: '', jwtToken: ''}
+    //         setAuthUser(data);
+    //         saveToSessionStorage(StorageKey.jwt, data.jwtToken);
+    //     },
+    // };
 
     return (
         <Provider store={store}>
             <BrowserRouter>
                 <div className='mainApp'>
-                    <AuthUserContext.Provider value={authContextValue}>
+                    {/*<AuthUserContext.Provider value={authContextValue}>*/}
                         <HeaderContainer />
                         <Pages />
-                    </AuthUserContext.Provider>
+                    {/*</AuthUserContext.Provider>*/}
                     <FooterContainer />
                 </div>
             </BrowserRouter>

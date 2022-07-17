@@ -9,7 +9,8 @@ import { addToFavorite } from '../../../redux/Favorite/favoriteActions';
 
 const BlogsPage = () => {
 
-    const { authUser } = useContext(AuthUserContext);
+    // const { authUser } = useContext(AuthUserContext);
+    const authUser = useSelector(state => state.user)
 
     const dispatch = useDispatch();
 
