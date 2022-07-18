@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteBlogEndpoint, getBlogsEndpoint } from '../../../api/apiEndpoints';
 import { Button, Card, Col, Container, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../../../redux/Favorite/favoriteActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { Link, NavLink } from 'react-router-dom';
 
 const BlogsPage = () => {
 
@@ -51,7 +52,12 @@ const BlogsPage = () => {
                         <Col key={blog.blogId}>
                             <Card style={{ width: '28rem', padding: '5px' }}>
                                 <Card.Body>
-                                    <Card.Title>{blog.subject}</Card.Title>
+                                    <Card.Title>
+                                        <NavLink key={"blog"}
+                                                 to="/blog"
+                                                 state={{ blog: blog }}
+                                        >{blog.subject}</NavLink>
+                                    </Card.Title>
                                     <hr />
                                     <Card.Text>{blog.description.length < 100 ? blog.description : blog.description.substring(0, 500) + ' ...'}</Card.Text>
                                     <hr />
