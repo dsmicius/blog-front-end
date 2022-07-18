@@ -7,7 +7,8 @@ const FormLabelControl = ({
                               placeholderText,
                               onChange,
                               isTextArea = false,
-                              value,
+                              defaultValue
+
                           }) => {
     return (
         <Form.Group className={className} controlId={name}>
@@ -17,11 +18,13 @@ const FormLabelControl = ({
                                 name={name}
                                 as='textarea'
                                 onChange={onChange}
-                                value={value} />
+                                defaultValue={defaultValue}
+                />
                 : <Form.Control placeholder={placeholderText}
                                 name={name}
                                 onChange={onChange}
-                                value={value}/>
+                                defaultValue={defaultValue}
+                />
             }
         </Form.Group>
     );

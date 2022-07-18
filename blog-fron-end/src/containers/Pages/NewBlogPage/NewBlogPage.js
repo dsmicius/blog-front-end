@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const NewBlogPage = () => {
-    const [userDto, setUserDto] = useState({email: ''});
+    // const [userDto, setUserDto] = useState({email: ''});
 
     const [blog, setBlog] = useState({
         subject: '',

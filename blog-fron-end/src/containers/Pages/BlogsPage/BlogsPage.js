@@ -14,30 +14,29 @@ const BlogsPage = () => {
     const dispatch = useDispatch();
 
     const [blogItems, setBlogItems] = useState([]);
+    const [blogItemDeleted, setBlogItemDeleted] = useState(null);
+
 
     useEffect(() => {
-        getBlogsEndpoint()
-            .then(({ data }) => {
-                setBlogItems(data.blogs);
-            })
-            .catch((error) => console.log('error', error));
-
-    }, []);
+        console.log('BlogPageEfect');
+        if (blogItemDeleted == null || blogItemDeleted) {
+            getBlogsEndpoint()
+                .then(({ data }) => {
+                    setBlogItems(data.blogs);
+                    setBlogItemDeleted(false);
+                })
+                .catch((error) => console.log('error', error));
+        }
+    }, [blogItemDeleted]);
 
     const onDeleteClick = (blogId) => {
+
         deleteBlogEndpoint(blogId, {
             headers: {
                 'Authorization': `Bearer ${authUser.jwtToken}`,
             },
-        })
-            .catch((error) => console.log('ERROR:', error))
-            .finally(
-                getBlogsEndpoint()
-                    .then(({ data }) => {
-                        setBlogItems(data.blogs);
-                    })
-                    .catch((error) => console.log('error', error)),
-            );
+        }).then(() => setBlogItemDeleted(true))
+            .catch((error) => console.log('ERROR:', error));
     };
 
     const handleAddBlogToFavorite = (blog) => {
@@ -53,9 +52,9 @@ const BlogsPage = () => {
                             <Card style={{ width: '28rem', padding: '5px' }}>
                                 <Card.Body>
                                     <Card.Title>
-                                        <NavLink key={"blog"}
-                                                 to="/blog"
-                                                 state={{ blog: blog }}
+                                        <NavLink key={'blog'}
+                                                 to='/blog'
+                                                 state={{ blogItem: blog }}
                                         >{blog.subject}</NavLink>
                                     </Card.Title>
                                     <hr />
@@ -77,10 +76,16 @@ const BlogsPage = () => {
                                                 style={{ marginRight: 7 }}>
                                                 DELETE
                                             </button>
-                                            <Card.Link className='btn btn-primary'
-                                                       style={{ marginRight: 7 }}>
-                                                EDIT
-                                            </Card.Link>
+                                            {/*<Card.Link className='btn btn-primary'*/}
+                                            {/*           style={{ marginRight: 7 }}>*/}
+                                            {/*    EDIT*/}
+                                            {/*</Card.Link>*/}
+                                            <NavLink
+                                                className='btn btn-primary'
+                                                key={'blog'}
+                                                to='/blogEdit'
+                                                state={{ blogItem: blog }}
+                                            >EDIT</NavLink>
                                         </div>
                                         <div style={{ alignSelf: 'self-end' }}>
                                             <Button className='btn btn-success'

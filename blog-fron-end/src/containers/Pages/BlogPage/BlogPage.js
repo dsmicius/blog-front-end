@@ -5,7 +5,7 @@ import FormLabelControl from '../../../components/Form/FormLabelControl/FormLabe
 const BlogPage = () => {
 
     const location = useLocation();
-    const {blog} = location.state
+    const {blogItem} = location.state
     const navigate = useNavigate();
 
     return (
@@ -16,13 +16,13 @@ const BlogPage = () => {
                     name="subject"
                     labelText="subject"
                     placeholderText="Enter subject"
-                    value={blog.subject}
+                    value={blogItem.subject}
                 />
 
                 <FormLabelControl
                     className="mb-3"
                     name="description"
-                    value={blog.description}
+                    value={blogItem.description}
                     isTextArea
                 />
             </Form>

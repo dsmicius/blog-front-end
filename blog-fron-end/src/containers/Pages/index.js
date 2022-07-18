@@ -5,6 +5,8 @@ import NewBlogPage from "./NewBlogPage/NewBlogPage";
 import FavoritesPage from "./FavoritesPage/FavoritesPage";
 import LoginPage from "./LoginPage/LoginPage";
 import BlogPage from './BlogPage/BlogPage';
+import BlogEditPage from './BlogEditPage/BlogEditPage';
+
 
 export default () => (
     <Routes>
@@ -14,5 +16,6 @@ export default () => (
         <Route path="/favorites" element={<FavoritesPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/blog" element={<BlogPage/>}/>
+        <Route path="/blogEdit" element={<BlogEditPage/>}/>
     </Routes>
 );
