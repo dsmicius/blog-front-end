@@ -7,6 +7,7 @@ const FormLabelControl = ({
                               placeholderText,
                               onChange,
                               isTextArea = false,
+                              value,
                           }) => {
     return (
         <Form.Group className={className} controlId={name}>
@@ -14,14 +15,16 @@ const FormLabelControl = ({
             {isTextArea
                 ? <Form.Control placeholder={placeholderText}
                                 name={name}
-                                as="textarea"
-                                onChange={onChange} />
+                                as='textarea'
+                                onChange={onChange}
+                                value={value} />
                 : <Form.Control placeholder={placeholderText}
                                 name={name}
-                                onChange={onChange} />
+                                onChange={onChange}
+                                value={value}/>
             }
         </Form.Group>
-    )
-}
+    );
+};
 
 export default FormLabelControl;
