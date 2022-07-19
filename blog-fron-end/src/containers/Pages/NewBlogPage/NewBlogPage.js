@@ -44,7 +44,7 @@ const NewBlogPage = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        console.log(blog);
+        console.log("New Blog Created",blog);
         createBlogEndpoint(blog, {
             headers: {
                 'Authorization': `Bearer ${authUser.jwtToken}`

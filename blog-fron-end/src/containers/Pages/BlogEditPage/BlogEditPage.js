@@ -15,24 +15,24 @@ const BlogEditPage = () => {
     const { t } = useTranslation("blogForm");
 
     const [blog, setBlog] = useState({
-        subject: '',
-        description: '',
-        userDto: {email: ''}
+        blogId: blogItem.blogId,
+        subject: blogItem.subject,
+        description: blogItem.description,
+        userDto: {email: blogItem.email}
     });
 
     const handleChange = (e) => {
-        console.log(e)
         setBlog({
             ...blog,
             [e.target.name]: e.target.value,
-            userDto: {email: authUser.username}
+            userDto: {email: authUser.username},
         });
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        console.log("BlogIrasas",blog);
+        console.log("Blog updated",blog);
         updateBlogEndpoint(blog, {
             headers: {
                 'Authorization': `Bearer ${authUser.jwtToken}`

@@ -18,7 +18,6 @@ const BlogsPage = () => {
 
 
     useEffect(() => {
-        console.log('BlogPageEfect');
         if (blogItemDeleted == null || blogItemDeleted) {
             getBlogsEndpoint()
                 .then(({ data }) => {
@@ -76,10 +75,6 @@ const BlogsPage = () => {
                                                 style={{ marginRight: 7 }}>
                                                 DELETE
                                             </button>
-                                            {/*<Card.Link className='btn btn-primary'*/}
-                                            {/*           style={{ marginRight: 7 }}>*/}
-                                            {/*    EDIT*/}
-                                            {/*</Card.Link>*/}
                                             <NavLink
                                                 className='btn btn-primary'
                                                 key={'blog'}
